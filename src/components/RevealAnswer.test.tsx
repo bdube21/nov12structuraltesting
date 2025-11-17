@@ -47,6 +47,12 @@ describe("Reveal Answer", () => {
 
     // Click Toggle Answer Visibility button, system shows answer
     test("Click Toggle Answer Visibility button, system shows answer", async () => {
+        const toggleHintButton = screen.getByRole("button", {
+            name: /Toggle hint/i,
+        });
+        await act(async () => {
+            toggleHintButton.click();
+        });
         const toggleAnswerButton = screen.getByRole("button", {
             name: /Toggle Answer Visibility/i,
         });
@@ -59,6 +65,12 @@ describe("Reveal Answer", () => {
 
     // Click Toggle Answer Visibility button, system shows answer
     test("Click Toggle Answer Visibility button, click answer button again, system hides answer", async () => {
+        const toggleHintButton = screen.getByRole("button", {
+            name: /Toggle hint/i,
+        });
+        await act(async () => {
+            toggleHintButton.click();
+        });
         const toggleAnswerButton = screen.getByRole("button", {
             name: /Toggle Answer Visibility/i,
         });
@@ -96,6 +108,21 @@ describe("Reveal Answer", () => {
         });
         //system shows answer
         expectHintIsPresent(true);
+    });
+
+    // Click Toggle Hint button, system shows Toggle Answer Visibility button
+    test("Click Toggle Hint, system shows Toggle Answer Visibility button", async () => {
+        const toggleHintButton = screen.getByRole("button", {
+            name: /Toggle hint/i,
+        });
+        await act(async () => {
+            toggleHintButton.click();
+        });
+        //Toggle Answer Visibility button is present
+        const toggleAnswerButton = screen.queryByRole("button", {
+            name: /Toggle Answer Visibility/i,
+        });
+        expect(toggleAnswerButton).toBeInTheDocument();
     });
 
     // Click Toggle Hint twice, hint is hidden again
