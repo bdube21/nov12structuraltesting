@@ -38,11 +38,11 @@ describe("Reveal Answer", () => {
 
     // Click "Toggle Answer Visibility" button
 
-    test("There is a Toggle Answer Visibility button", () => {
-        const toggleAnswerButton = screen.getByRole("button", {
+    test("There is initially not Toggle Answer Visibility button", () => {
+        const toggleAnswerButton = screen.queryByRole("button", {
             name: /Toggle Answer Visibility/i,
         });
-        expect(toggleAnswerButton).toBeInTheDocument();
+        expect(toggleAnswerButton).not.toBeInTheDocument();
     });
 
     // Click Toggle Answer Visibility button, system shows answer
